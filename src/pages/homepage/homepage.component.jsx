@@ -1,29 +1,47 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
+import { createStructuredSelector } from 'reselect';
 
-import { fetchCentersStart } from '../../redux/organization/organization.actions';
+import { setCurrentCenters } from '../../redux/center/center.actions'
+import { selectCurrentCenters } from '../../redux/center/center.selectors';
 
 import Filters from '../../components/filters/filters.component';
 
-const HomePage = ({ fetchCentersStart }) => {
+const HomePage = ({ setCurrentCenters, currentCenters }) => {
 
   useEffect(() => {
-    fetchCentersStart()
-  }, [fetchCentersStart]);
+    fetch('https://qtpd-api.herokuapp.com/centers')
+      .then(response => {
+        return response.json()
+      })
+      .then(jsonResponse => {
+        return setCurrentCenters(jsonResponse.data);
+      }).catch(error => console.log('Error while fetching centers: ', error));
+  }, [setCurrentCenters]);
 
   return (
     <div>
       <Filters />
       <h1>Hi from homepage!</h1>
+      {
+        currentCenters.map(c => {
+          return <p key={c.id}>{c.name}</p>
+        })
+      }
+
     </div>
   );
 }
 
 const mapDispatchToProps = dispatch => ({
-  fetchCentersStart: () => dispatch(fetchCentersStart())
+  setCurrentCenters: (centers) => dispatch(setCurrentCenters(centers))
+});
+
+const mapStateToProps = createStructuredSelector({
+  currentCenters: selectCurrentCenters
 });
 
 export default connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps
 )(HomePage);

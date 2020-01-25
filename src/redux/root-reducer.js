@@ -6,7 +6,8 @@ import {
 } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 
-import organizationReducer from './organization/organization.reducer';
+// import organizationReducer from './organization/organization.reducer';
+import centerReducer from './center/center.reducer';
 
 const persistConfig = {
   key: 'root',
@@ -15,7 +16,8 @@ const persistConfig = {
 };
 
 const rootReducer = combineReducers({
-  organization: organizationReducer
+  // organization: organizationReducer
+  center: centerReducer
 });
 
 export default persistReducer(persistConfig, rootReducer);
