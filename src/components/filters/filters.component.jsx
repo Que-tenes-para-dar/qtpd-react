@@ -15,7 +15,7 @@ const Filters = ({ fetchFiltersStart, allFilters }) => {
     <div>
       <h5>Lista de filtros:</h5>
       {
-        allFilters.map(f => <p key={f._id}>{f.descripiton}</p>)
+        allFilters.map(f => <p key={f._id}>{f.description}</p>)
       }
     </div>
   );
