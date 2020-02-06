@@ -1,9 +1,35 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { connect } from 'react-redux';
+import { createStructuredSelector } from 'reselect';
 
-const Filters = () => {
+import { fetchFiltersStart } from '../../redux/filter/filter.actions';
+import { selectAllFilters } from '../../redux/filter/filter.selectors';
+
+const Filters = ({ fetchFiltersStart, allFilters }) => {
+
+  useEffect(() => {
+    fetchFiltersStart()
+  }, [fetchFiltersStart]);
+
   return (
-    <h1>Acá van los filtros!</h1>
+    <div>
+      <h5>Lista de filtros:</h5>
+      {
+        allFilters.map(f => <p key={f._id}>{f.descripiton}</p>)
+      }
+    </div>
   );
 }
 
-export default Filters;
+const mapDispatchToProps = dispatch => ({
+  fetchFiltersStart: () => dispatch(fetchFiltersStart())
+});
+
+const mapStateToProps = createStructuredSelector({
+  allFilters: selectAllFilters
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Filters);

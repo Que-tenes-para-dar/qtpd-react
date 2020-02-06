@@ -4,11 +4,16 @@ import {
 } from 'redux-saga/effects';
 
 import {
-  organizationSagas
-} from './organization/organization.sagas';
+  centerSagas
+} from './center/center.sagas';
+import {
+  filterSagas
+} from './filter/filter.sagas';
+
 
 export default function* rootSaga() {
   yield all([
-    call(organizationSagas)
+    call(centerSagas),
+    call(filterSagas)
   ]);
 }

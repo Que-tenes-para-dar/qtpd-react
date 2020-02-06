@@ -4,7 +4,7 @@ import {
 
 const selectCenter = state => state.center;
 
-export const selectCurrentCenters = createSelector(
+export const selectCenters = createSelector(
   [selectCenter],
-  (center) => center.currentCenters
+  (center) => center.centers
 );

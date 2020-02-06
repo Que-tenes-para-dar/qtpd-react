@@ -6,18 +6,18 @@ import {
 } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 
-// import organizationReducer from './organization/organization.reducer';
 import centerReducer from './center/center.reducer';
+import filterReducer from './filter/filter.reducer';
 
 const persistConfig = {
   key: 'root',
   storage,
-  // whitelist: ['cart']
+  whitelist: []
 };
 
 const rootReducer = combineReducers({
-  // organization: organizationReducer
-  center: centerReducer
+  center: centerReducer,
+  filter: filterReducer
 });
 
 export default persistReducer(persistConfig, rootReducer);
