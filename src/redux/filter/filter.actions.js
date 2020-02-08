@@ -1,7 +1,7 @@
 import FilterActionTypes from './filter.types';
 
-export const invertFilterIsApplied = filter => ({
-  type: FilterActionTypes.INVERT_FILTER_IS_APPLIED,
+export const toggleFilterIsApplied = filter => ({
+  type: FilterActionTypes.TOGGLE_FILTER_IS_APPLIED,
   payload: filter
 });
 

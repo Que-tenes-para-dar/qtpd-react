@@ -1,16 +1,16 @@
-import React, { useEffect, Fragment } from 'react';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 
 import {
   fetchFiltersStart,
-  invertFilterIsApplied,
+  toggleFilterIsApplied,
   clearAllSelectedFilters
 } from '../../redux/filter/filter.actions';
 
 import { selectAllFilters, selectSelectedFilters } from '../../redux/filter/filter.selectors';
 
-const Filters = ({ allFilters, selectedFilters, fetchFiltersStart, invertFilterIsApplied, clearAllSelectedFilters }) => {
+const Filters = ({ allFilters, selectedFilters, fetchFiltersStart, toggleFilterIsApplied, clearAllSelectedFilters }) => {
 
   useEffect(() => {
     fetchFiltersStart()
@@ -27,7 +27,7 @@ const Filters = ({ allFilters, selectedFilters, fetchFiltersStart, invertFilterI
             return (
               <div className='col-md-6' key={'div-' + filter._id}>
                 <label key={'label-' + filter._id} htmlFor={'fcb-' + filter._id}>{filter.description}</label>
-                <input id={'fcb-' + filter._id} type="checkbox" key={filter._id} onChange={() => invertFilterIsApplied(filter)} />
+                <input id={'fcb-' + filter._id} type="checkbox" key={filter._id} onChange={() => toggleFilterIsApplied(filter)} />
               </div>
             );
           })
@@ -55,9 +55,9 @@ const Filters = ({ allFilters, selectedFilters, fetchFiltersStart, invertFilterI
 }
 
 const mapDispatchToProps = dispatch => ({
+  clearAllSelectedFilters: () => dispatch(clearAllSelectedFilters()),
   fetchFiltersStart: () => dispatch(fetchFiltersStart()),
-  invertFilterIsApplied: filter => dispatch(invertFilterIsApplied(filter)),
-  clearAllSelectedFilters: () => dispatch(clearAllSelectedFilters())
+  toggleFilterIsApplied: filter => dispatch(toggleFilterIsApplied(filter))
 });
 
 const mapStateToProps = createStructuredSelector({
