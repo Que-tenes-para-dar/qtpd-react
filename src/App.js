@@ -1,5 +1,5 @@
 import React from 'react';
-import { Switch, Route, Redirect } from 'react-router-dom';
+import { Switch, Route } from 'react-router-dom';
 
 import Header from './components/header/header.component';
 // pages
@@ -9,7 +9,6 @@ import HowDoesItWork from './pages/how-does-it-work/how-does-it-work.component';
 import SearchCenter from './pages/search-center/search-center.component';
 import WhoWeAre from './pages/who-we-are/who-we-are.component';
 
-import logo from './logo.svg';
 import './App.css';
 
 const App = () => {

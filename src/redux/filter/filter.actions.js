@@ -1,5 +1,14 @@
 import FilterActionTypes from './filter.types';
 
+export const invertFilterIsApplied = filter => ({
+  type: FilterActionTypes.INVERT_FILTER_IS_APPLIED,
+  payload: filter
+});
+
+export const clearAllSelectedFilters = () => ({
+  type: FilterActionTypes.CLEAR_ALL_SELECTED_FILTERS
+});
+
 export const fetchFiltersStart = () => ({
   type: FilterActionTypes.FETCH_FILTERS_START
 });

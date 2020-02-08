@@ -1,32 +1,68 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, Fragment } from 'react';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 
-import { fetchFiltersStart } from '../../redux/filter/filter.actions';
-import { selectAllFilters } from '../../redux/filter/filter.selectors';
+import {
+  fetchFiltersStart,
+  invertFilterIsApplied,
+  clearAllSelectedFilters
+} from '../../redux/filter/filter.actions';
 
-const Filters = ({ fetchFiltersStart, allFilters }) => {
+import { selectAllFilters, selectSelectedFilters } from '../../redux/filter/filter.selectors';
+
+const Filters = ({ allFilters, selectedFilters, fetchFiltersStart, invertFilterIsApplied, clearAllSelectedFilters }) => {
 
   useEffect(() => {
     fetchFiltersStart()
   }, [fetchFiltersStart]);
 
   return (
-    <div>
-      <h5>Lista de filtros:</h5>
-      {
-        allFilters.map(f => <p key={f._id}>{f.description}</p>)
-      }
+    <div className='container'>
+      <div className="row">
+        <div className="col-12 text-center">
+          <h4>Tipos de donaciones</h4>
+        </div>
+        {
+          allFilters.map(filter => {
+            return (
+              <div className='col-md-6' key={'div-' + filter._id}>
+                <label key={'label-' + filter._id} htmlFor={'fcb-' + filter._id}>{filter.description}</label>
+                <input id={'fcb-' + filter._id} type="checkbox" key={filter._id} onChange={() => invertFilterIsApplied(filter)} />
+              </div>
+            );
+          })
+        }
+      </div>
+      <div className="row">
+        <div className="col-12 text-center">
+          Distancia: (TODO)
+        </div>
+      </div>
+      <div className="row">
+        <div className="col-6">
+          <input className='btn btn-primary btn-block' type="button"
+            value="BUSCAR"
+            onClick={() => clearAllSelectedFilters()} />
+        </div>
+        <div className="col-6">
+          <input className='btn btn-outline-primary btn-block' type="button"
+            value="Borrar filtros"
+            onClick={() => clearAllSelectedFilters()} />
+        </div>
+      </div>
     </div>
   );
 }
 
 const mapDispatchToProps = dispatch => ({
-  fetchFiltersStart: () => dispatch(fetchFiltersStart())
+  fetchFiltersStart: () => dispatch(fetchFiltersStart()),
+  invertFilterIsApplied: filter => dispatch(invertFilterIsApplied(filter)),
+  clearAllSelectedFilters: () => dispatch(clearAllSelectedFilters())
 });
 
 const mapStateToProps = createStructuredSelector({
-  allFilters: selectAllFilters
+  allFilters: selectAllFilters,
+  selectedFilters: selectSelectedFilters
 });
 
 export default connect(
