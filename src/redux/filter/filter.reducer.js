@@ -1,6 +1,6 @@
 import FilterActionTypes from './filter.types';
 import {
-  invertFilterIsApplied
+  toggleFilterIsApplied
 } from './filter.utils';
 
 
@@ -12,10 +12,10 @@ const INITIAL_STATE = {
 
 const filterReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
-    case FilterActionTypes.INVERT_FILTER_IS_APPLIED:
+    case FilterActionTypes.TOGGLE_FILTER_IS_APPLIED:
       return {
         ...state,
-        selectedFilters: invertFilterIsApplied(state.selectedFilters, action.payload)
+        selectedFilters: toggleFilterIsApplied(state.selectedFilters, action.payload)
       };
     case FilterActionTypes.CLEAR_ALL_SELECTED_FILTERS:
       return {
