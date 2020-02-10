@@ -8,9 +8,10 @@ import {
   clearAllSelectedFilters
 } from '../../redux/filter/filter.actions';
 
+import { fetchCentersStart } from '../../redux/center/center.actions'
 import { selectAllFilters, selectSelectedFilters } from '../../redux/filter/filter.selectors';
 
-const Filters = ({ allFilters, selectedFilters, fetchFiltersStart, toggleFilterIsApplied, clearAllSelectedFilters }) => {
+const Filters = ({ allFilters, clearAllSelectedFilters, fetchCentersStart, fetchFiltersStart, toggleFilterIsApplied, selectedFilters }) => {
 
   useEffect(() => {
     fetchFiltersStart()
@@ -42,7 +43,7 @@ const Filters = ({ allFilters, selectedFilters, fetchFiltersStart, toggleFilterI
         <div className="col-6">
           <input className='btn btn-primary btn-block' type="button"
             value="BUSCAR"
-            onClick={() => clearAllSelectedFilters()} />
+            onClick={() => fetchCentersStart()} />
         </div>
         <div className="col-6">
           <input className='btn btn-outline-primary btn-block' type="button"
@@ -56,6 +57,7 @@ const Filters = ({ allFilters, selectedFilters, fetchFiltersStart, toggleFilterI
 
 const mapDispatchToProps = dispatch => ({
   clearAllSelectedFilters: () => dispatch(clearAllSelectedFilters()),
+  fetchCentersStart: () => dispatch(fetchCentersStart()),
   fetchFiltersStart: () => dispatch(fetchFiltersStart()),
   toggleFilterIsApplied: filter => dispatch(toggleFilterIsApplied(filter))
 });
