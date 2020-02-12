@@ -7,10 +7,6 @@ const INITIAL_STATE = {
 
 const centerReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
-    case CenterActionTypes.FETCH_CENTERS_START:
-      return {
-        ...state
-      };
     case CenterActionTypes.FETCH_CENTERS_SUCCESS:
       return {
         ...state,
