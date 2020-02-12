@@ -2,16 +2,16 @@ import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 
-import { fetchCentersStart } from '../../redux/center/center.actions'
+import { fetchCentersFilteredStart } from '../../redux/center/center.actions'
 import { selectCenters } from '../../redux/center/center.selectors';
 
-const CentersMap = ({ fetchCentersStart, centers }) => {
+const CentersMap = ({ centers, fetchCentersFilteredStart }) => {
   // here useEffect is replacing the componentDidMount behaviour
-  // as we know that fetchCentersStart is not going to change because it comes from the dispatch properties,
+  // as we know that fetchCentersFilteredStart is not going to change because it comes from the dispatch properties,
   // it has the same behaviour as sending an empty array
   useEffect(() => {
-    fetchCentersStart()
-  }, [fetchCentersStart]);
+    fetchCentersFilteredStart()
+  }, [fetchCentersFilteredStart]);
 
   return (
     <div>
@@ -24,7 +24,7 @@ const CentersMap = ({ fetchCentersStart, centers }) => {
 }
 
 const mapDispatchToProps = dispatch => ({
-  fetchCentersStart: () => dispatch(fetchCentersStart())
+  fetchCentersFilteredStart: () => dispatch(fetchCentersFilteredStart())
 });
 
 const mapStateToProps = createStructuredSelector({
