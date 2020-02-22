@@ -12,8 +12,12 @@ const Header = () => {
 
   return (
     <div>
-      <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-        <Link className="navbar-brand" to=''>¿Qué tenés para dar?</Link>
+      <nav class="navbar navbar-expand-md navbar-dark fixed-top header-container">
+        <div className="logo-container">
+          <Link className="navbar-brand" to=''>
+            <img alt="QTPD Logo" class="navbar-brand-full" src="https://www.quetenesparadar.com/assets/img/brand/logo-85x85.png" width="55" height="55"></img>¿Qué tenés para dar?
+          </Link>
+        </div>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
