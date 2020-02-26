@@ -18,7 +18,7 @@ const Header = () => {
       <Navbar expand="md" fixed="top" className="header-container" expanded={expanded}>
         <div className="logo-container">
           <Link className="navbar-brand" to=''>
-            <img alt="QTPD Logo" className="navbar-brand-full" src="https://www.quetenesparadar.com/assets/img/brand/logo-85x85.png" width="55" height="55"></img>¿Qué tenés para dar?
+            <img alt="QTPD Logo" className="navbar-brand-full" src="https://www.quetenesparadar.com/assets/img/brand/logo-85x85.png" width="55" height="55" />¿Qué tenés para dar?
           </Link>
         </div>
         <Navbar.Toggle aria-controls="navbarCollapse" onClick={() => setExpanded(expanded ? false : "expanded")} />
