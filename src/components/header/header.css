@@ -15,10 +15,29 @@
     color: #333333 !important;
 }
 
+.logo-container img {
+    margin-right: 12px;
+    margin-left: 12px;
+}
+
 .navbar {
     padding: 0px;
 }
 
-.navbar #navbarCollapse{
+.navbar #navbarCollapse {
     margin: .5rem 1rem;
+}
+
+.nav-link {
+    color: rgba(255, 255, 255, 0.75) !important;
+    font-size: 20px;
+}
+
+.nav-item.active {
+    background-color: #364da3 !important;
+    border-radius: 4px;
+}
+
+.nav-item.active .nav-link {
+    color: #fff !important;
 }
