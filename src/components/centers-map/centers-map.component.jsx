@@ -1,8 +1,7 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
-
-import { fetchCentersFilteredStart } from '../../redux/center/center.actions'
+import { fetchCentersFilteredStart } from '../../redux/center/center.actions';
 import { selectCenters } from '../../redux/center/center.selectors';
 
 const CentersMap = ({ centers, fetchCentersFilteredStart }) => {
@@ -14,12 +13,12 @@ const CentersMap = ({ centers, fetchCentersFilteredStart }) => {
   }, [fetchCentersFilteredStart]);
 
   return (
-    <div>
+    <>
       <h4>Lista de centros: </h4>
       {
         centers.map(c => <p key={c._id}>{c.name}</p>)
       }
-    </div>
+    </>
   );
 }
 
