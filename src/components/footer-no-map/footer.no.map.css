@@ -1,3 +1,21 @@
-#sticky-footer {
+#sticky-footer-no-map {
     flex-shrink: 0;
+    color: white;
+    height: 60px;
+
+    background: rgb(52, 58, 64);
+    background: linear-gradient(90deg, rgba(52, 58, 64, 1) 47%, rgba(252, 200, 0, 1) 47%, rgba(252, 200, 0, 1) 48%, rgba(239, 143, 0, 1) 48%, rgba(239, 143, 0, 1) 49%, rgba(230, 86, 0, 1) 49%, rgba(230, 86, 0, 1) 50%, rgba(128, 182, 30, 1) 50%, rgba(128, 182, 30, 1) 51%, rgba(113, 12, 128, 1) 51%, rgba(113, 12, 128, 1) 52%, rgba(0, 140, 209, 1) 52%, rgba(0, 140, 209, 1) 53%, rgba(52, 58, 64, 1) 53%);
+}
+
+.social-link-logo {
+    height: 50px;
+    margin-top: 5px;
+}
+
+.copyright-txt {
+    height: 60px;
+    /* Same as #sticky-footer-no-map height. */
+    line-height: 60px;
+    /* Same as #sticky-footer-no-map height. */
+    text-align: center;
 }
