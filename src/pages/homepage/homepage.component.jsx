@@ -9,8 +9,10 @@ const HomePage = () => {
       <Helmet>
         <title>¿Qué tenés para dar? - Mapa de instituciones solidarias</title>
       </Helmet>
-      <Filters />
-      <CentersMap />
+      <div className="page-content">
+        <Filters />
+        <CentersMap />
+      </div>
     </>
   );
 }
