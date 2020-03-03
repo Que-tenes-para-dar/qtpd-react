@@ -1,14 +1,17 @@
 import React from 'react';
-
-import Filters from '../../components/filters/filters.component';
+import { Helmet } from "react-helmet";
 import CentersMap from '../../components/centers-map/centers-map.component';
+import Filters from '../../components/filters/filters.component';
 
 const HomePage = () => {
   return (
-    <div>
+    <>
+      <Helmet>
+        <title>¿Qué tenés para dar? - Mapa de instituciones solidarias</title>
+      </Helmet>
       <Filters />
       <CentersMap />
-    </div>
+    </>
   );
 }
 

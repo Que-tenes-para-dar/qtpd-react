@@ -1,23 +1,46 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { useState } from 'react';
+import { Link, useLocation } from 'react-router-dom';
+import Navbar from 'react-bootstrap/Navbar';
 
-import { HeaderContainer, LogoContainer } from './header.styles';
+import './header.css';
+import logo from '../../assets/imgs/logo-navbar.png';
 
 const Header = () => {
+  const location = useLocation();
+  const [expanded, setExpanded] = useState(false);
+
+  const getNavLinkClass = (path) => {
+    return location.pathname === path ? ' active' : '';
+  };
+
   return (
-    <HeaderContainer>
-      <LogoContainer to='/' className='px-3'>
-        <span className='d-md-none d-lg-flex text-decoration-none'>
-          ¿Qué tenés para dar?
-        </span>
-      </LogoContainer>
-      <div>
-        <Link to=''>Mapa</Link>
-        <Link to='como-funciona'>¿Cómo funciona?</Link>
-        <Link to='quienes-somos'>¿Quiénes somos?</Link>
-        <Link to='contacto'>Contacto</Link>
-      </div>
-    </HeaderContainer>
+    <>
+      <Navbar expand="md" fixed="top" className="header-container" expanded={expanded}>
+        <div className="logo-container">
+          <Link className="navbar-brand" to=''>
+            <img alt="QTPD Logo" className="navbar-brand-full" src={logo} width="55" height="55" />¿Qué tenés para dar?
+          </Link>
+        </div>
+        <Navbar.Toggle aria-controls="navbarCollapse" onClick={() => setExpanded(expanded ? false : "expanded")} />
+        <Navbar.Collapse id="navbarCollapse">
+          <ul className="navbar-nav mr-auto">
+            <li className={"nav-item" + getNavLinkClass('/')}>
+              <Link className="nav-link" to='' onClick={() => setTimeout(() => { setExpanded(false) }, 150)}>Mapa</Link>
+            </li>
+            <li className={"nav-item" + getNavLinkClass('/como-funciona')}>
+              <Link className="nav-link" to='como-funciona' onClick={() => setTimeout(() => { setExpanded(false) }, 150)}>¿Cómo funciona?</Link>
+            </li>
+            <li className={"nav-item" + getNavLinkClass('/quienes-somos')}>
+              <Link className="nav-link" to='quienes-somos' onClick={() => setTimeout(() => { setExpanded(false) }, 150)}>¿Quiénes somos?</Link>
+            </li>
+            <li className={"nav-item" + getNavLinkClass('/contacto')}>
+              <Link className="nav-link" to='contacto' onClick={() => setTimeout(() => { setExpanded(false) }, 150)}>Contacto</Link>
+            </li>
+          </ul>
+        </Navbar.Collapse>
+      </Navbar>
+    </>
   );
 };
 
