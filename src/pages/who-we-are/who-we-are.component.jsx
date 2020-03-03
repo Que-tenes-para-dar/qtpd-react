@@ -7,7 +7,9 @@ const WhoWeAre = () => {
       <Helmet>
         <title>¿Qué tenés para dar? - ¿Quiénes somos?</title>
       </Helmet>
-      <h1>Quienes somos?</h1>
+      <div className="page-content">
+        <h1>Quienes somos?</h1>
+      </div>
     </>
   );
 };

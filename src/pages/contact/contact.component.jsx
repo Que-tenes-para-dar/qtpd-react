@@ -7,7 +7,9 @@ const ContactPage = () => {
       <Helmet>
         <title>¿Qué tenés para dar? - Contacto</title>
       </Helmet>
-      <h1>Contactanos!</h1>
+      <div className="page-content">
+        <h1>Contactanos!</h1>
+      </div>
     </>
   );
 };
