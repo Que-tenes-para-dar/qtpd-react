@@ -7,7 +7,9 @@ const HowDoesItWork = () => {
       <Helmet>
         <title>¿Qué tenés para dar? - ¿Cómo funciona QTPD?</title>
       </Helmet>
-      <h1>Cómo funciona</h1>
+      <div className="page-content">
+        <h1>Cómo funciona</h1>
+      </div>
     </>
   );
 };
