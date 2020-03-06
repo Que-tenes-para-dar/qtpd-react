@@ -35,7 +35,6 @@ const FooterNoMap = (props) => {
   } else {
     return (<></>);
   }
-  
 };
 
 export default FooterNoMap;
