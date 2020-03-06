@@ -1,6 +1,6 @@
 import React from 'react';
 
-import './footer.no.map.css';
+import './footer.map.css';
 
 import fbLogo from '../../assets/imgs/fb.png';
 import igLogo from '../../assets/imgs/ig.png';

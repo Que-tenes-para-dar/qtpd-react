@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import { fetchCentersFilteredStart } from '../../redux/center/center.actions';
 import { selectCenters } from '../../redux/center/center.selectors';
+import FooterMap from '../footer-map/footer.map.component';
 
 const CentersMap = ({ centers, fetchCentersFilteredStart }) => {
   // here useEffect is replacing the componentDidMount behaviour
@@ -18,6 +19,7 @@ const CentersMap = ({ centers, fetchCentersFilteredStart }) => {
       {
         centers.map(c => <p key={c._id}>{c.name}</p>)
       }
+      <FooterMap />
     </>
   );
 }

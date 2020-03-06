@@ -10,8 +10,14 @@ const HomePage = () => {
         <title>¿Qué tenés para dar? - Mapa de instituciones solidarias</title>
       </Helmet>
       <div className="page-content">
-        <Filters />
-        <CentersMap />
+        <div className="row">
+          <div className="col">
+            <Filters />
+          </div>
+          <div className="col-md-9">
+            <CentersMap />
+          </div>
+        </div>
       </div>
     </>
   );
