@@ -24,3 +24,5 @@ yarn-error.log*
 
 qtpd.react.notes.txt
 qtpd.react.notes.md
+
+secrets.js
