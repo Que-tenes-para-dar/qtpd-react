@@ -1,5 +1,5 @@
 import React from 'react';
-import { Switch, Route } from 'react-router-dom';
+import { Switch, Route, useLocation } from 'react-router-dom';
 
 // components
 import Header from './components/header/header.component';
@@ -15,6 +15,12 @@ import WhoWeAre from './pages/who-we-are/who-we-are.component';
 import './App.css';
 
 const App = () => {
+  const location = useLocation();
+
+  const showFooterNoMap = () => {
+    return location.pathname != '/';
+  };
+
   return (
     <>
       <Header />
@@ -25,7 +31,7 @@ const App = () => {
         <Route exact path='/busqueda' component={SearchCenter} />
         <Route exact path='/quienes-somos' component={WhoWeAre} />
       </Switch>
-      <FooterNoMap />
+      <FooterNoMap show={showFooterNoMap()}/>
     </>
   );
 }
