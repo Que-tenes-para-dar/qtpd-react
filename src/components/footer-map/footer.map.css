@@ -1,0 +1,20 @@
+#sticky-footer-no-map {
+    flex-shrink: 0;
+    color: white;
+    height: 60px;
+
+    background: rgb(252,200,0);
+    background: linear-gradient(90deg, rgba(252,200,0,1) 0%, rgba(252,200,0,1) 1%, rgba(239,143,0,1) 1%, rgba(239,143,0,1) 2%, rgba(230,86,0,1) 2%, rgba(230,86,0,1) 3%, rgba(52,58,64,1) 3%, rgba(52,58,64,1) 97%, rgba(128,182,30,1) 97%, rgba(128,182,30,1) 98%, rgba(113,12,128,1) 98%, rgba(113,12,128,1) 99%, rgba(0,140,209,1) 99%, rgba(0,140,209,1) 100%); }
+
+.social-link-logo {
+    height: 50px;
+    margin-top: 5px;
+}
+
+.copyright-txt {
+    height: 60px;
+    /* Same as #sticky-footer-no-map height. */
+    line-height: 60px;
+    /* Same as #sticky-footer-no-map height. */
+    text-align: center;
+}
