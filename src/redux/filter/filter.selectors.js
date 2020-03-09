@@ -4,7 +4,7 @@ import {
 
 const selectFilter = state => state.filter;
 
-export const selectAllDonationTypes = createSelector(
+export const selectAllFilters = createSelector(
   [selectFilter],
-  filter => filter.allDonationTypes
+  (filter) => filter.allFilters
 );

@@ -1,5 +1,3 @@
-In order to run the App you should create a file named `secrets.js` inside `src` folder by copying the file `secrets.js.example`. After that change the values inside accordinly.
-
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
