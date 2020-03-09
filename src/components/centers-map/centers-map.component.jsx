@@ -25,11 +25,8 @@ const CentersMap = ({ centers, fetchCentersFilteredStart }) => {
 
   return (
     <>
-      <h4>Lista de centros: </h4>
-      {
-        centers.map(c => <p key={c._id}>{c.name}</p>)
-      }
-      <div style={{ height: '100vh', width: '100%' }}>
+      
+      <div className="h-100 w-100">
         <GoogleMapReact
           bootstrapURLKeys={{ key: secretSettings.googleMapsApiKey }}
           defaultCenter={defaultMapProps.center}
