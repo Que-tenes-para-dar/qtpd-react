@@ -1,8 +1,11 @@
+import GoogleMapReact from 'google-map-react';
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
+import secretSettings from '../../secrets';
 import { fetchCentersFilteredStart } from '../../redux/center/center.actions';
 import { selectCenters } from '../../redux/center/center.selectors';
+import FooterMap from '../footer-map/footer.map.component';
 
 const CentersMap = ({ centers, fetchCentersFilteredStart }) => {
   // here useEffect is replacing the componentDidMount behaviour
@@ -12,12 +15,26 @@ const CentersMap = ({ centers, fetchCentersFilteredStart }) => {
     fetchCentersFilteredStart()
   }, [fetchCentersFilteredStart]);
 
+  const defaultMapProps = {
+    center: {
+      lat: -34.9032784,
+      lng: -56.1881599
+    },
+    zoom: 11
+  };
+
   return (
     <>
-      <h4>Lista de centros: </h4>
-      {
-        centers.map(c => <p key={c._id}>{c.name}</p>)
-      }
+      
+      <div className="h-100 w-100">
+        <GoogleMapReact
+          bootstrapURLKeys={{ key: secretSettings.googleMapsApiKey }}
+          defaultCenter={defaultMapProps.center}
+          defaultZoom={defaultMapProps.zoom}
+        >
+        </GoogleMapReact>
+        <FooterMap />
+      </div>
     </>
   );
 }
