@@ -9,11 +9,11 @@ import twLogo from '../../assets/imgs/tw.png';
 const FooterMap = () => {
   return (
     <>
-      <footer id="sticky-footer-no-map" className="bg-dark container-fluid">
+      <footer id="sticky-footer-map" className="bg-dark container-fluid">
         <div className="row">
           <div className="col">
             <div className="copyright-txt">
-              &#169; Copyright {(new Date().getFullYear())} - Todos los derechos reservados
+              &#169; {(new Date().getFullYear())} - ¿Qué tenés para dar?
             </div>
           </div>
           <div className="col text-center">
