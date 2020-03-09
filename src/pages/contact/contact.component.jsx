@@ -1,7 +1,16 @@
 import React from 'react';
+import { Helmet } from "react-helmet";
 
-const ContactPage = () => (
-  <h1>Contactanos!</h1>
-);
-
+const ContactPage = () => {
+  return (
+    <>
+      <Helmet>
+        <title>¿Qué tenés para dar? - Contacto</title>
+      </Helmet>
+      <div className="page-content">
+        <h1>Contactanos!</h1>
+      </div>
+    </>
+  );
+};
 export default ContactPage;

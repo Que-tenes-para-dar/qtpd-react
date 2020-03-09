@@ -1,0 +1,53 @@
+.header-container {
+    background-color: #3d56b6;
+    color: white !important;
+}
+
+.logo-container {
+    background-color: #FBC02D;
+    padding: 0px 10px;
+    font-size: 28px;
+    color: #333333;
+}
+
+.logo-container a {
+    font-size: 28px;
+    color: #333333 !important;
+}
+
+.logo-container img {
+    margin-right: 12px;
+    margin-left: 12px;
+}
+
+.navbar {
+    padding: 0px;
+}
+
+.navbar #navbarCollapse {
+    margin: .5rem 1rem;
+}
+
+.nav-link {
+    color: rgba(255, 255, 255, 0.75) !important;
+    font-size: 20px;
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+}
+
+.nav-item.active {
+    background-color: #364da3 !important;
+    border-radius: 4px;
+}
+
+.nav-item.active .nav-link {
+    color: #fff !important;
+}
+
+.navbar-light .navbar-toggler {
+    border-color: rgba(255, 255, 255, 0.75);
+}
+
+.navbar-toggler-icon {
+    background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(255, 255, 255, 0.75)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E") !important;
+}

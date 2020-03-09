@@ -1,15 +1,15 @@
 import FilterActionTypes from './filter.types';
 
-export const fetchFiltersStart = () => ({
-  type: FilterActionTypes.FETCH_FILTERS_START
+export const fetchDonationTypesStart = () => ({
+  type: FilterActionTypes.FETCH_DONATION_TYPES_START
 });
 
-export const fetchFiltersSuccess = filters => ({
-  type: FilterActionTypes.FETCH_FILTERS_SUCCESS,
+export const fetchDonationTypesSuccess = filters => ({
+  type: FilterActionTypes.FETCH_DONATION_TYPES_SUCCESS,
   payload: filters
 });
 
-export const fetchFiltersFailure = errorMessage => ({
-  type: FilterActionTypes.FETCH_FILTERS_FAILURE,
+export const fetchDonationTypesFailure = errorMessage => ({
+  type: FilterActionTypes.FETCH_DONATION_TYPES_FAILURE,
   payload: errorMessage
 });

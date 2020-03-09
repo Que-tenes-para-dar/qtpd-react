@@ -1,22 +1,31 @@
-import FilterActionTypes from './filter.types'
+import FilterActionTypes from './filter.types';
+import {
+  toggleDonationTypeIsApplied
+} from './filter.utils';
+
+import {defaultFilters} from '../../utils/constants.utils';
+
 
 const INITIAL_STATE = {
-  allFilters: [],
-  error: null
-}
+  allDonationTypes: [],
+  error: null,
+  selectedDonationTypes: defaultFilters.donationTypes,
+  selectedLocation: defaultFilters.location,
+  selectedMaxDistance: defaultFilters.maxDistance
+};
 
 const filterReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
-    case FilterActionTypes.FETCH_FILTERS_START:
+    case FilterActionTypes.FETCH_DONATION_TYPES_START:
       return {
         ...state
       };
-    case FilterActionTypes.FETCH_FILTERS_SUCCESS:
+    case FilterActionTypes.FETCH_DONATION_TYPES_SUCCESS:
       return {
         ...state,
-        allFilters: action.payload
+        allDonationTypes: action.payload
       };
-    case FilterActionTypes.FETCH_FILTERS_FAILURE:
+    case FilterActionTypes.FETCH_DONATION_TYPES_FAILURE:
       return {
         ...state,
         error: action.payload
