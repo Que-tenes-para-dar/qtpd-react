@@ -12,7 +12,7 @@ import filterReducer from './filter/filter.reducer';
 const persistConfig = {
   key: 'root',
   storage,
-  whitelist: [filterReducer]
+  whitelist: []
 };
 
 const rootReducer = combineReducers({
