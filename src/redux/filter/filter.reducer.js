@@ -1,9 +1,8 @@
 import FilterActionTypes from './filter.types';
-import {
-  toggleDonationTypeIsApplied
-} from './filter.utils';
 
-import {defaultFilters} from '../../utils/constants.utils';
+import {
+  defaultFilters
+} from '../../utils/constants.utils';
 
 
 const INITIAL_STATE = {
