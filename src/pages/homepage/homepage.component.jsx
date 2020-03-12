@@ -11,10 +11,10 @@ const HomePage = () => {
       </Helmet>
       <div className="page-content">
         <div className="row h-100">
-          <div className="col">
+          <div className="col pr-0">
             <Filters />
           </div>
-          <div className="col-md-9">
+          <div className="col-md-9 pl-0">
             <CentersMap />
           </div>
         </div>
