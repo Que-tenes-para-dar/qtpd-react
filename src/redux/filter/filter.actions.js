@@ -1,5 +1,4 @@
 import FilterActionTypes from './filter.types';
-import { defaultFilters } from '../../utils/constants.utils';
 
 
 export const fetchDonationTypesStart = () => ({
@@ -7,9 +6,6 @@ export const fetchDonationTypesStart = () => ({
 });
 
 export const fetchDonationTypesSuccess = (filters) => {
-  filters.forEach((filter) => {
-    defaultFilters.donationTypes.push(filter);
-  });
   return {
     type: FilterActionTypes.FETCH_DONATION_TYPES_SUCCESS,
     payload: filters
