@@ -54,7 +54,7 @@ const Filters = ({ allDonationTypes, fetchCentersFilteredStart, fetchDonationTyp
   };
 
   const handleClearFilters = () => {
-    setSelectedDonationTypes([]);
+    setSelectedDonationTypes(allDonationTypes);
   }
 
   return (
