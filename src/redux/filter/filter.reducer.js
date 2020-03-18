@@ -7,7 +7,7 @@ import filterUtils from './filter.utils';
 const INITIAL_STATE = {
   allDonationTypes: [],
   error: null,
-  selectedDonationTypes: defaultFilters.donationTypes,
+  selectedDonationTypes: filterUtils.setAllDonationTypesAsSelected(defaultFilters.donationTypes),
   selectedLocation: defaultFilters.location,
   selectedMaxDistance: defaultFilters.maxDistance
 };
