@@ -1,13 +1,13 @@
 import FilterActionTypes from './filter.types';
 
-import {defaultFilters} from '../../utils/constants.utils';
-import filterUtils from './filter.utils';
-
+import {
+  defaultFilters
+} from '../../utils/constants.utils';
 
 const INITIAL_STATE = {
   allDonationTypes: [],
   error: null,
-  selectedDonationTypes: filterUtils.setAllDonationTypesAsSelected(defaultFilters.donationTypes),
+  selectedDonationTypes: defaultFilters.donationTypes,
   selectedLocation: defaultFilters.location,
   selectedMaxDistance: defaultFilters.maxDistance
 };
@@ -19,10 +19,10 @@ const filterReducer = (state = INITIAL_STATE, action) => {
         ...state
       };
     case FilterActionTypes.FETCH_DONATION_TYPES_SUCCESS:
-      filterUtils.setAllDonationTypesAsSelected(action.payload);
       return {
         ...state,
-        allDonationTypes: action.payload
+          allDonationTypes: action.payload,
+          selectedDonationTypes: action.payload
       };
     case FilterActionTypes.FETCH_DONATION_TYPES_FAILURE:
       return {

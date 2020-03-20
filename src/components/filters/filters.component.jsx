@@ -1,19 +1,24 @@
 import React, { useEffect, useState } from 'react';
+import Form from 'react-bootstrap/Form';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import { fetchCentersFilteredStart } from '../../redux/center/center.actions';
 import { fetchDonationTypesStart } from '../../redux/filter/filter.actions';
-import { selectAllDonationTypes } from '../../redux/filter/filter.selectors';
+import { selectAllDonationTypes, selectSelectedDonationTypes } from '../../redux/filter/filter.selectors';
 import { defaultFilters } from '../../utils/constants.utils';
 import './filters.css';
-import Form from 'react-bootstrap/Form';
 
 const Filters = ({ allDonationTypes, fetchCentersFilteredStart, fetchDonationTypesStart }) => {
+  
   useEffect(() => {
-    fetchDonationTypesStart()
+    fetchDonationTypesStart();
   }, [fetchDonationTypesStart]);
 
-  const [selectedDonationTypes, setSelectedDonationTypes] = useState(defaultFilters.donationTypes);
+  useEffect(() => {
+    setSelectedDonationTypes(allDonationTypes);
+  }, [allDonationTypes]);
+
+  const [selectedDonationTypes, setSelectedDonationTypes] = useState(allDonationTypes);
   const [maxDistance, setMaxDistance] = useState(defaultFilters.maxDistance);
   const [location, setLocation] = useState(defaultFilters.location);
 
@@ -21,17 +26,10 @@ const Filters = ({ allDonationTypes, fetchCentersFilteredStart, fetchDonationTyp
     return selectedDonationTypes.find(d => d._id === donationType._id) !== undefined;
   }
 
-  // const [selectedFilters, setSelectedFilters] = useState({
-  //   maxDistance: defaultFilters.maxDistance,
-  //   donationTypes: defaultFilters.selectedDonationTypes,
-  //   location: defaultFilters.location
-  // });
-
   const handleClickDonationType = (event, donationTypeClicked) => {
     if (event.target.checked) {
       const existingDonationType = selectedDonationTypes.find(donationType => donationType._id === donationTypeClicked._id);
       // if it's not already in the list, we add it
-      console.log(donationTypeClicked)
       if (!existingDonationType) {
         // add it
         return setSelectedDonationTypes([...selectedDonationTypes, { ...donationTypeClicked }]);
