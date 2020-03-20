@@ -1,15 +1,3 @@
-import {
-    defaultFilters
-} from '../../utils/constants.utils';
-
-const setAllDonationTypesAsSelected = (donationTypes) => {
-    donationTypes.forEach((donationType) => {
-        defaultFilters.donationTypes.push(donationType);
-    });
-};
-
-const filterUtils = {
-    setAllDonationTypesAsSelected: setAllDonationTypesAsSelected
-};
+const filterUtils = {};
 
 export default filterUtils;
