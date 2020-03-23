@@ -7,9 +7,10 @@ import { fetchDonationTypesStart } from '../../redux/filter/filter.actions';
 import { selectAllDonationTypes, selectSelectedDonationTypes } from '../../redux/filter/filter.selectors';
 import { defaultFilters } from '../../utils/constants.utils';
 import './filters.css';
+import Slider from '@material-ui/core/Slider';
 
 const Filters = ({ allDonationTypes, fetchCentersFilteredStart, fetchDonationTypesStart }) => {
-  
+
   useEffect(() => {
     fetchDonationTypesStart();
   }, [fetchDonationTypesStart]);
@@ -24,7 +25,7 @@ const Filters = ({ allDonationTypes, fetchCentersFilteredStart, fetchDonationTyp
 
   const donationTypeShouldBeChecked = donationType => {
     return selectedDonationTypes.find(d => d._id === donationType._id) !== undefined;
-  }
+  };
 
   const handleClickDonationType = (event, donationTypeClicked) => {
     if (event.target.checked) {
@@ -41,7 +42,27 @@ const Filters = ({ allDonationTypes, fetchCentersFilteredStart, fetchDonationTyp
       donationType => donationType._id !== donationTypeClicked._id
     );
     return setSelectedDonationTypes(newDonationTypesList);
+  };
+
+  const sliderValueConverter = (value) => {
+    return [1, 2, 3, 5, 8, 15, 25, 50, 100, 150, 300, 500, 1000][value];
+  };
+
+  const handleSliderChange = (event, newValue) => {
+    setMaxDistance(sliderValueConverter(newValue));
+  };
+
+  const slidervVlueLabelFormat = (value) => {
+    const sliderVal = sliderValueConverter(value);
+    if (sliderVal == 1000) {
+      return "∞ km.";
+    }
+    return `${sliderVal} km.`;
   }
+
+  const sliderChangeEnd = (event, newValue) => {
+    console.log(event, newValue);
+  };
 
   const handleSearch = () => {
     return fetchCentersFilteredStart({
@@ -53,7 +74,7 @@ const Filters = ({ allDonationTypes, fetchCentersFilteredStart, fetchDonationTyp
 
   const handleClearFilters = () => {
     setSelectedDonationTypes(allDonationTypes);
-  }
+  };
 
   return (
     <div className='container filters-container'>
@@ -95,6 +116,20 @@ const Filters = ({ allDonationTypes, fetchCentersFilteredStart, fetchDonationTyp
         <div className="col-12 text-center">
           Distancia: (TODO)
           {/* .ito - add scroller */}
+        </div>
+        <div className="col-12">
+          <Slider
+            defaultValue={12}
+            min={0}
+            max={12}
+            step={1}
+            marks
+            valueLabelDisplay="auto"
+            onChange={handleSliderChange}
+            onChangeCommitted={sliderChangeEnd}
+            getAriaValueText={slidervVlueLabelFormat}
+            valueLabelFormat={slidervVlueLabelFormat}
+          />
         </div>
       </div>
       <div className="row">
