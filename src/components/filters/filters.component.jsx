@@ -21,6 +21,7 @@ const Filters = ({ allDonationTypes, fetchCentersFilteredStart, fetchDonationTyp
 
   const [selectedDonationTypes, setSelectedDonationTypes] = useState(allDonationTypes);
   const [maxDistance, setMaxDistance] = useState(defaultFilters.maxDistance);
+  const [sliderValue, setSliderValue] = useState(12);
   const [location, setLocation] = useState(defaultFilters.location);
 
   const donationTypeShouldBeChecked = donationType => {
@@ -49,6 +50,7 @@ const Filters = ({ allDonationTypes, fetchCentersFilteredStart, fetchDonationTyp
   };
 
   const handleSliderChange = (event, newValue) => {
+    setSliderValue(newValue);
     setMaxDistance(sliderValueConverter(newValue));
   };
 
@@ -60,10 +62,6 @@ const Filters = ({ allDonationTypes, fetchCentersFilteredStart, fetchDonationTyp
     return `${sliderVal} km.`;
   }
 
-  const sliderChangeEnd = (event, newValue) => {
-    console.log(event, newValue);
-  };
-
   const handleSearch = () => {
     return fetchCentersFilteredStart({
       donationTypes: selectedDonationTypes,
@@ -74,6 +72,15 @@ const Filters = ({ allDonationTypes, fetchCentersFilteredStart, fetchDonationTyp
 
   const handleClearFilters = () => {
     setSelectedDonationTypes(allDonationTypes);
+    setMaxDistance(1000);
+    setSliderValue(12);
+  };
+
+  const getSelectedDistanceStr = () => {
+    if (maxDistance == 1000) {
+      return `Sin límite de distancia`;
+    }
+    return `Máximo ${maxDistance} km.`;
   };
 
   return (
@@ -94,7 +101,6 @@ const Filters = ({ allDonationTypes, fetchCentersFilteredStart, fetchDonationTyp
               allDonationTypes.map(donationType => {
                 return (
                   <div className='col-6 available-filter' key={'div-' + donationType._id}>
-
                     <Form.Check
                       type='switch'
                       id={'fcb-' + donationType._id}
@@ -102,7 +108,6 @@ const Filters = ({ allDonationTypes, fetchCentersFilteredStart, fetchDonationTyp
                       onChange={(event) => handleClickDonationType(event, donationType)}
                       checked={donationTypeShouldBeChecked(donationType)}
                     />
-
                   </div>
                 );
               })
@@ -110,38 +115,31 @@ const Filters = ({ allDonationTypes, fetchCentersFilteredStart, fetchDonationTyp
           </div>
 
         </div>
-      </div>
-
-      <div className="row">
-        <div className="col-12 text-center">
-          Distancia: (TODO)
-          {/* .ito - add scroller */}
-        </div>
         <div className="col-12">
-          <Slider
-            defaultValue={12}
-            min={0}
-            max={12}
-            step={1}
-            marks
-            valueLabelDisplay="auto"
-            onChange={handleSliderChange}
-            onChangeCommitted={sliderChangeEnd}
-            getAriaValueText={slidervVlueLabelFormat}
-            valueLabelFormat={slidervVlueLabelFormat}
-          />
+          <div className="filter-section-title">
+            LO LLEVO: <span className="text-white">{getSelectedDistanceStr()}</span>
+          </div>
+          <div className="col-12">
+            <Slider
+              value={sliderValue}
+              min={0}
+              max={12}
+              step={1}
+              marks
+              valueLabelDisplay="auto"
+              onChange={handleSliderChange}
+              getAriaValueText={slidervVlueLabelFormat}
+              valueLabelFormat={slidervVlueLabelFormat}
+            />
+          </div>
         </div>
       </div>
       <div className="row">
         <div className="col-6">
-          <input className='btn btn-primary btn-block' type="button"
-            value="BUSCAR"
-            onClick={handleSearch} />
+          <button className='btn btn-outline-light btn-block' type="button" onClick={() => handleClearFilters()}>Borrar filtros</button>
         </div>
         <div className="col-6">
-          <input className='btn btn-outline-primary btn-block' type="button"
-            value="Borrar filtros"
-            onClick={() => handleClearFilters()} />
+          <button className='btn btn-primary btn-block' type="button" onClick={handleSearch}>BUSCAR</button>
         </div>
       </div>
     </div>
