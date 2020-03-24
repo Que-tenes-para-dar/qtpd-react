@@ -1,0 +1,42 @@
+.filters-container {
+    height: 100%;
+    overflow-y: auto;
+    background-color: grey;
+}
+
+.filters-top {
+    background-color: #0db6cc;
+    color: white;
+    padding-top: 10px;
+}
+
+.filters-title {
+    font-size: 22px;
+    text-align: center;
+    font-weight: bold;
+}
+
+.filters-subtitle {
+    font-size: 16px;
+    padding-top: 5px;
+    padding-bottom: 10px;
+    border-bottom: solid 5px #b1b1b1;
+}
+
+.filter-section-title {
+    color: #b1b1b1;
+    font-size: 16px;
+    text-align: left;
+    margin-top: 10px;
+}
+
+.available-filter {
+    color: white;
+    padding-top: 2.5px;
+    padding-bottom: 2.5px;
+}
+
+.PrivateValueLabel-offset-23 {
+    text-align: center !important;
+    font-size: 10px !important;
+}

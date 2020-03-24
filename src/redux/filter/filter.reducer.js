@@ -1,10 +1,8 @@
 import FilterActionTypes from './filter.types';
+
 import {
-  toggleDonationTypeIsApplied
-} from './filter.utils';
-
-import {defaultFilters} from '../../utils/constants.utils';
-
+  defaultFilters
+} from '../../utils/constants.utils';
 
 const INITIAL_STATE = {
   allDonationTypes: [],
@@ -23,7 +21,8 @@ const filterReducer = (state = INITIAL_STATE, action) => {
     case FilterActionTypes.FETCH_DONATION_TYPES_SUCCESS:
       return {
         ...state,
-        allDonationTypes: action.payload
+          allDonationTypes: action.payload,
+          selectedDonationTypes: action.payload
       };
     case FilterActionTypes.FETCH_DONATION_TYPES_FAILURE:
       return {

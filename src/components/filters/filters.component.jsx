@@ -1,34 +1,32 @@
 import React, { useEffect, useState } from 'react';
+import Form from 'react-bootstrap/Form';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
-
-import {
-  fetchDonationTypesStart
-} from '../../redux/filter/filter.actions';
-
-import { fetchCentersFilteredStart } from '../../redux/center/center.actions'
-import { selectAllDonationTypes } from '../../redux/filter/filter.selectors';
-
+import { fetchCentersFilteredStart } from '../../redux/center/center.actions';
+import { fetchDonationTypesStart } from '../../redux/filter/filter.actions';
+import { selectAllDonationTypes, selectSelectedDonationTypes } from '../../redux/filter/filter.selectors';
 import { defaultFilters } from '../../utils/constants.utils';
+import './filters.css';
+import Slider from '@material-ui/core/Slider';
 
 const Filters = ({ allDonationTypes, fetchCentersFilteredStart, fetchDonationTypesStart }) => {
+
   useEffect(() => {
-    fetchDonationTypesStart()
+    fetchDonationTypesStart();
   }, [fetchDonationTypesStart]);
 
-  const [selectedDonationTypes, setSelectedDonationTypes] = useState(defaultFilters.donationTypes);
+  useEffect(() => {
+    setSelectedDonationTypes(allDonationTypes);
+  }, [allDonationTypes]);
+
+  const [selectedDonationTypes, setSelectedDonationTypes] = useState(allDonationTypes);
   const [maxDistance, setMaxDistance] = useState(defaultFilters.maxDistance);
+  const [sliderValue, setSliderValue] = useState(12);
   const [location, setLocation] = useState(defaultFilters.location);
 
   const donationTypeShouldBeChecked = donationType => {
     return selectedDonationTypes.find(d => d._id === donationType._id) !== undefined;
-  }
-
-  // const [selectedFilters, setSelectedFilters] = useState({
-  //   maxDistance: defaultFilters.maxDistance,
-  //   donationTypes: defaultFilters.selectedDonationTypes,
-  //   location: defaultFilters.location
-  // });
+  };
 
   const handleClickDonationType = (event, donationTypeClicked) => {
     if (event.target.checked) {
@@ -45,6 +43,23 @@ const Filters = ({ allDonationTypes, fetchCentersFilteredStart, fetchDonationTyp
       donationType => donationType._id !== donationTypeClicked._id
     );
     return setSelectedDonationTypes(newDonationTypesList);
+  };
+
+  const sliderValueConverter = (value) => {
+    return [1, 2, 3, 5, 8, 15, 25, 50, 100, 150, 300, 500, 1000][value];
+  };
+
+  const handleSliderChange = (event, newValue) => {
+    setSliderValue(newValue);
+    setMaxDistance(sliderValueConverter(newValue));
+  };
+
+  const slidervVlueLabelFormat = (value) => {
+    const sliderVal = sliderValueConverter(value);
+    if (sliderVal == 1000) {
+      return "∞ km.";
+    }
+    return `${sliderVal} km.`;
   }
 
   const handleSearch = () => {
@@ -56,44 +71,75 @@ const Filters = ({ allDonationTypes, fetchCentersFilteredStart, fetchDonationTyp
   };
 
   const handleClearFilters = () => {
-    setSelectedDonationTypes([]);
-  }
+    setSelectedDonationTypes(allDonationTypes);
+    setMaxDistance(1000);
+    setSliderValue(12);
+  };
+
+  const getSelectedDistanceStr = () => {
+    if (maxDistance == 1000) {
+      return `Sin límite de distancia`;
+    }
+    return `Máximo ${maxDistance} km.`;
+  };
 
   return (
-    <div className='container'>
+    <div className='container filters-container'>
       <div className="row">
-        <div className="col-12 text-center">
-          <h4>Tipos de donaciones</h4>
+        <div className="col-12 filters-top filters-title">
+          ¡Alguien necesita lo que no usas!
         </div>
-        {
-          allDonationTypes.map(donationType => {
-            return (
-              <div className='col-md-6' key={'div-' + donationType._id}>
-                <label key={'label-' + donationType._id} htmlFor={'fcb-' + donationType._id}>{donationType.description}</label>
-                <input id={'fcb-' + donationType._id} type="checkbox" key={donationType._id}
-                  checked={donationTypeShouldBeChecked(donationType)}
-                  onChange={(event) => handleClickDonationType(event, donationType)} />
-              </div>
-            );
-          })
-        }
-      </div>
-      <div className="row">
-        <div className="col-12 text-center">
-          Distancia: (TODO)
-          {/* .ito - add scroller */}
+        <div className="col-12 filters-top filters-subtitle">
+          Seleccioná <strong>qué</strong> tenés para dar y te mostramos a <strong>dónde</strong> llevarlo.
+        </div>
+        <div className="col-12">
+          <div className="filter-section-title">
+            TENGO:
+          </div>
+          <div className="row">
+            {
+              allDonationTypes.map(donationType => {
+                return (
+                  <div className='col-6 available-filter' key={'div-' + donationType._id}>
+                    <Form.Check
+                      type='switch'
+                      id={'fcb-' + donationType._id}
+                      label={donationType.description}
+                      onChange={(event) => handleClickDonationType(event, donationType)}
+                      checked={donationTypeShouldBeChecked(donationType)}
+                    />
+                  </div>
+                );
+              })
+            }
+          </div>
+
+        </div>
+        <div className="col-12">
+          <div className="filter-section-title">
+            LO LLEVO: <span className="text-white">{getSelectedDistanceStr()}</span>
+          </div>
+          <div className="col-12">
+            <Slider
+              value={sliderValue}
+              min={0}
+              max={12}
+              step={1}
+              marks
+              valueLabelDisplay="auto"
+              onChange={handleSliderChange}
+              getAriaValueText={slidervVlueLabelFormat}
+              valueLabelFormat={slidervVlueLabelFormat}
+            />
+          </div>
         </div>
       </div>
       <div className="row">
         <div className="col-6">
-          <input className='btn btn-primary btn-block' type="button"
-            value="BUSCAR"
-            onClick={handleSearch} />
+          <button className='btn btn-outline-light btn-block' type="button" onClick={() => handleClearFilters()}>Borrar filtros</button>
         </div>
         <div className="col-6">
-          <input className='btn btn-outline-primary btn-block' type="button"
-            value="Borrar filtros"
-            onClick={() => handleClearFilters()} />
+          <button className='btn btn-primary btn-block' type="button" onClick={handleSearch}>BUSCAR</button>
         </div>
       </div>
     </div>

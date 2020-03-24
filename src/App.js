@@ -18,7 +18,7 @@ const App = () => {
   const location = useLocation();
 
   const showFooterNoMap = () => {
-    return location.pathname != '/';
+    return location.pathname !== '/';
   };
 
   return (

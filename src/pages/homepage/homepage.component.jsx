@@ -10,11 +10,11 @@ const HomePage = () => {
         <title>¿Qué tenés para dar? - Mapa de instituciones solidarias</title>
       </Helmet>
       <div className="page-content">
-        <div className="row h-100">
-          <div className="col">
+        <div className="row h-100 w-100 ml-0">
+          <div className="col pr-0 pl-0">
             <Filters />
           </div>
-          <div className="col-md-9">
+          <div className="col-md-9 pl-0 pr-0">
             <CentersMap />
           </div>
         </div>
