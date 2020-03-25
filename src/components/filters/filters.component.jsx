@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import { fetchCentersFilteredStart } from '../../redux/center/center.actions';
 import { fetchDonationTypesStart } from '../../redux/filter/filter.actions';
-import { selectAllDonationTypes, selectSelectedDonationTypes } from '../../redux/filter/filter.selectors';
+import { selectAllDonationTypes } from '../../redux/filter/filter.selectors';
 import { defaultFilters } from '../../utils/constants.utils';
 import './filters.css';
 import Slider from '@material-ui/core/Slider';
@@ -12,16 +12,21 @@ import Slider from '@material-ui/core/Slider';
 const Filters = ({ allDonationTypes, fetchCentersFilteredStart, fetchDonationTypesStart }) => {
 
   useEffect(() => {
+    setLoadingFilters(true);
     fetchDonationTypesStart();
   }, [fetchDonationTypesStart]);
 
   useEffect(() => {
     setSelectedDonationTypes(allDonationTypes);
+    if (allDonationTypes.length > 0) {
+      setLoadingFilters(false);
+    }
   }, [allDonationTypes]);
 
   const [selectedDonationTypes, setSelectedDonationTypes] = useState(allDonationTypes);
   const [maxDistance, setMaxDistance] = useState(defaultFilters.maxDistance);
   const [sliderValue, setSliderValue] = useState(12);
+  const [loadingFilters, setLoadingFilters] = useState(true);
   const [location, setLocation] = useState(defaultFilters.location);
 
   const donationTypeShouldBeChecked = donationType => {
@@ -54,9 +59,9 @@ const Filters = ({ allDonationTypes, fetchCentersFilteredStart, fetchDonationTyp
     setMaxDistance(sliderValueConverter(newValue));
   };
 
-  const slidervVlueLabelFormat = (value) => {
+  const sliderValueLabelFormat = (value) => {
     const sliderVal = sliderValueConverter(value);
-    if (sliderVal == 1000) {
+    if (sliderVal === 1000) {
       return "∞ km.";
     }
     return `${sliderVal} km.`;
@@ -77,7 +82,7 @@ const Filters = ({ allDonationTypes, fetchCentersFilteredStart, fetchDonationTyp
   };
 
   const getSelectedDistanceStr = () => {
-    if (maxDistance == 1000) {
+    if (maxDistance === 1000) {
       return `Sin límite de distancia`;
     }
     return `Máximo ${maxDistance} km.`;
@@ -91,57 +96,79 @@ const Filters = ({ allDonationTypes, fetchCentersFilteredStart, fetchDonationTyp
         </div>
         <div className="col-12 filters-top filters-subtitle">
           Seleccioná <strong>qué</strong> tenés para dar y te mostramos a <strong>dónde</strong> llevarlo.
-        </div>
-        <div className="col-12">
-          <div className="filter-section-title">
-            TENGO:
           </div>
-          <div className="row">
-            {
-              allDonationTypes.map(donationType => {
-                return (
-                  <div className='col-6 available-filter' key={'div-' + donationType._id}>
-                    <Form.Check
-                      type='switch'
-                      id={'fcb-' + donationType._id}
-                      label={donationType.description}
-                      onChange={(event) => handleClickDonationType(event, donationType)}
-                      checked={donationTypeShouldBeChecked(donationType)}
-                    />
-                  </div>
-                );
-              })
-            }
-          </div>
+      </div>
 
-        </div>
-        <div className="col-12">
-          <div className="filter-section-title">
-            LO LLEVO: <span className="text-white">{getSelectedDistanceStr()}</span>
-          </div>
-          <div className="col-12">
-            <Slider
-              value={sliderValue}
-              min={0}
-              max={12}
-              step={1}
-              marks
-              valueLabelDisplay="auto"
-              onChange={handleSliderChange}
-              getAriaValueText={slidervVlueLabelFormat}
-              valueLabelFormat={slidervVlueLabelFormat}
-            />
-          </div>
-        </div>
-      </div>
       <div className="row">
-        <div className="col-6">
-          <button className='btn btn-outline-light btn-block' type="button" onClick={() => handleClearFilters()}>Borrar filtros</button>
-        </div>
-        <div className="col-6">
-          <button className='btn btn-primary btn-block' type="button" onClick={handleSearch}>BUSCAR</button>
-        </div>
+        {loadingFilters ? (
+          <div className="col-12">
+            <div className="loader">
+              <div class="sk-chase">
+                <div class="sk-chase-dot white"></div>
+                <div class="sk-chase-dot white"></div>
+                <div class="sk-chase-dot white"></div>
+                <div class="sk-chase-dot white"></div>
+                <div class="sk-chase-dot white"></div>
+                <div class="sk-chase-dot white"></div>
+              </div>
+              <>Cargando...</>
+            </div>
+          </div>
+        ) : (
+            <>
+              <div className="col-12">
+                <div className="filter-section-title">
+                  <>TENGO:</>
+                </div>
+                <div className="row">
+                  {
+                    allDonationTypes.map(donationType => {
+                      return (
+                        <div className='col-6 available-filter' key={'div-' + donationType._id}>
+                          <Form.Check
+                            type='switch'
+                            id={'fcb-' + donationType._id}
+                            label={donationType.description}
+                            onChange={(event) => handleClickDonationType(event, donationType)}
+                            checked={donationTypeShouldBeChecked(donationType)}
+                          />
+                        </div>
+                      );
+                    })
+                  }
+                </div>
+              </div>
+              <div className="col-12">
+                <div className="filter-section-title">
+                  <>LO LLEVO:</> <span className="text-white">{getSelectedDistanceStr()}</span>
+                </div>
+                <div className="col-12">
+                  <Slider
+                    value={sliderValue}
+                    min={0}
+                    max={12}
+                    step={1}
+                    marks
+                    valueLabelDisplay="auto"
+                    onChange={handleSliderChange}
+                    getAriaValueText={sliderValueLabelFormat}
+                    valueLabelFormat={sliderValueLabelFormat}
+                  />
+                </div>
+              </div>
+            </>
+          )}
       </div>
+      {!loadingFilters &&
+        <div className="row">
+          <div className="col-6">
+            <button className='btn btn-outline-light btn-block' type="button" onClick={() => handleClearFilters()}>Borrar filtros</button>
+          </div>
+          <div className="col-6">
+            <button className='btn btn-primary btn-block' type="button" onClick={handleSearch}>BUSCAR</button>
+          </div>
+        </div>
+      }
     </div>
   );
 }
