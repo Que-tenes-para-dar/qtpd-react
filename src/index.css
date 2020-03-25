@@ -41,3 +41,20 @@ body {
 .w-100 {
   width: 100%;
 }
+
+.sk-chase-dot.white::before {
+  background-color: white;
+}
+
+.loader {
+  padding-top: 50px;
+  padding-bottom: 50px;
+  text-align: center;
+  color: white;
+}
+
+.sk-chase {
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 20px;
+}
