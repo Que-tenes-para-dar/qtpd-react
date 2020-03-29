@@ -1,11 +1,15 @@
-import GoogleMapReact from 'google-map-react';
-import React, { useEffect } from 'react';
+// External references
+import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
-import secretSettings from '../../secrets';
+// Local references
 import { fetchCentersFilteredStart } from '../../redux/center/center.actions';
 import { selectCenters } from '../../redux/center/center.selectors';
+import { defaultLocation } from '../../utils/constants.utils';
+
 import FooterMap from '../footer-map/footer.map.component';
+import MapWithMarkers from '../map-with-markers/map-with-markers.component';
+import MapContainer from '../map-with-markers/map-with-markers.component';
 
 const CentersMap = ({ centers, fetchCentersFilteredStart }) => {
   // here useEffect is replacing the componentDidMount behaviour
@@ -15,24 +19,15 @@ const CentersMap = ({ centers, fetchCentersFilteredStart }) => {
     fetchCentersFilteredStart()
   }, [fetchCentersFilteredStart]);
 
-  const defaultMapProps = {
-    center: {
-      lat: -34.9032784,
-      lng: -56.1881599
-    },
-    zoom: 11
-  };
+  // TODO: set user location by reading the value from the browser on component did mount
+  const [userLocation, setUserLocation] = useState(defaultLocation);
+
 
   return (
     <>
-      
       <div className="h-100 w-100">
-        <GoogleMapReact
-          bootstrapURLKeys={{ key: secretSettings.googleMapsApiKey }}
-          defaultCenter={defaultMapProps.center}
-          defaultZoom={defaultMapProps.zoom}
-        >
-        </GoogleMapReact>
+        <MapContainer markers={centers} />
+        <MapWithMarkers markers={centers} userLocation={userLocation} />
         <FooterMap />
       </div>
     </>

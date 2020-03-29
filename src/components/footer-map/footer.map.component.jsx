@@ -17,13 +17,13 @@ const FooterMap = () => {
             </div>
           </div>
           <div className="col text-center">
-            <a href="https://www.facebook.com/quetenesparadar" target="_blank">
+            <a href="https://www.facebook.com/quetenesparadar" target="_blank" rel="noopener noreferrer">
               <img className="social-link-logo" alt="FB Logo" src={fbLogo} />
             </a>
-            <a href="https://twitter.com/quetenesparadar" target="_blank">
+            <a href="https://twitter.com/quetenesparadar" target="_blank" rel="noopener noreferrer">
               <img className="social-link-logo" alt="TW Logo" src={twLogo} />
             </a>
-            <a href="https://www.instagram.com/quetenesparadar/" target="_blank">
+            <a href="https://www.instagram.com/quetenesparadar/" target="_blank" rel="noopener noreferrer">
               <img className="social-link-logo" alt="IG Logo" src={igLogo} />
             </a>
           </div>
