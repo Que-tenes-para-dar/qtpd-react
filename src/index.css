@@ -15,11 +15,13 @@ body {
   width: 100%;
   display: inline-flex;
   flex-direction: column;
+  background-color: #F3F3F3;
 }
 
 .page-content {
   flex: 1 0 auto;
   padding-top: 65px;
+  background-color: #FFF;
 }
 
 .no-padding {
@@ -56,5 +58,13 @@ body {
 .sk-chase {
   margin-left: auto;
   margin-right: auto;
+  margin-bottom: 20px;
+}
+
+.pt-10 {
+  padding-top: 10px;
+}
+
+.mb-20 {
   margin-bottom: 20px;
 }
