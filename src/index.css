@@ -68,3 +68,9 @@ body {
 .mb-20 {
   margin-bottom: 20px;
 }
+
+.who-we-are-img {
+  width: 100%;
+  border-radius: 90px;
+  max-width: 180px;
+}
