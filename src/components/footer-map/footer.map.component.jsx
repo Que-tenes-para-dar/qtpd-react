@@ -11,7 +11,7 @@ const FooterMap = () => {
     <>
       <footer id="sticky-footer-map" className="bg-dark container-fluid">
         <div className="row">
-          <div className="col">
+          <div className="col text-center">
             <div className="copyright-txt">
               &#169; {(new Date().getFullYear())} - ¿Qué tenés para dar?
             </div>
