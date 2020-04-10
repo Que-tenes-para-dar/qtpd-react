@@ -15,7 +15,7 @@ body {
   width: 100%;
   display: inline-flex;
   flex-direction: column;
-  background-color: #F3F3F3;
+  background-color: #e4e5e6;
 }
 
 .page-content {
@@ -73,4 +73,8 @@ body {
   width: 100%;
   border-radius: 90px;
   max-width: 180px;
+}
+
+textarea {
+  resize: none;
 }
