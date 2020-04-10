@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 import whoWeAreIto from '../../assets/imgs/whoweare_ito.png';
 import whoWeAreMartin from '../../assets/imgs/whoweare_martin.png';
-import fbLogo from '../../assets/imgs/fb.png';
+import lnLogo from '../../assets/imgs/ln.png';
 import twLogo from '../../assets/imgs/tw.png';
 
 const WhoWeAre = () => {
@@ -49,6 +49,9 @@ const WhoWeAre = () => {
                   <a href="https://twitter.com/ItoFarina" target="_blank" rel="noopener noreferrer">
                     <img className="social-link-logo" alt="TW Logo" src={twLogo} />
                   </a>
+                  <a href="https://www.linkedin.com/in/alvaro-fari%C3%B1a-94265a44" target="_blank" rel="noopener noreferrer">
+                    <img className="social-link-logo" alt="LN Logo" src={lnLogo} />
+                  </a>
                 </div>
               </div>
             </div>
@@ -67,12 +70,27 @@ const WhoWeAre = () => {
                   <a href="https://twitter.com/tincho89" target="_blank" rel="noopener noreferrer">
                     <img className="social-link-logo" alt="TW Logo" src={twLogo} />
                   </a>
+                  <a href="https://www.linkedin.com/in/martinmanzo/" target="_blank" rel="noopener noreferrer">
+                    <img className="social-link-logo" alt="LN Logo" src={lnLogo} />
+                  </a>
                 </div>
               </div>
             </div>
           </div>
           <div className="col-12">
             <hr />
+          </div>
+        </div>
+        <div className="row">
+          <div className="col-12">
+            <h2>Agradecimientos</h2>
+            <p>
+              <strong>¿Qué tenés para dar?</strong> no hubiera sido posible de no ser por la ayuda de amigos, familiares y personas que se nos acercan
+              desinteresadamente a ayudar. 
+            </p>
+            <p>
+              A todos ellos <strong>¡muchas gracias!</strong> 
+            </p>
           </div>
         </div>
       </div>
